@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -17,7 +19,7 @@ public class CrookedRoulette {
 
     // The class constructor creates a HashMap.
     // Requires an array of keys and values. Arrays must be the same size.
-    CrookedRoulette(int[] keyArray, int[] valueArray) {
+    CrookedRoulette(int @NotNull [] keyArray, int @NotNull [] valueArray) {
         if (keyArray.length != valueArray.length) {
             throw new ArrayIndexOutOfBoundsException("Arrays have different lengths!");
         } else {
@@ -38,9 +40,9 @@ public class CrookedRoulette {
             sum += (int) value;
             diapason.add(sum);
         }
-        for (int item : diapason) {
-            System.out.println(item);
-        }
+//        for (int item : diapason) {
+//            System.out.println(item);
+//        }
     }
 
     // Checks if the input number matches with a random result
@@ -61,8 +63,8 @@ public class CrookedRoulette {
         int randomNumber = rand.nextInt(diapason.get(diapason.size() - 1));
         for (int item : diapason) {
             if (randomNumber < item) {
-                System.out.println("Random number for determining the range: " + randomNumber);
-                System.out.println("Range index: " + diapason.indexOf(item));
+//                System.out.println("Random number for determining the range: " + randomNumber);
+//                System.out.println("Range index: " + diapason.indexOf(item));
                 return diapason.indexOf(item);
             }
         }
@@ -72,7 +74,12 @@ public class CrookedRoulette {
     // We add a cell indicating the number and the probability of occurrence.
     // If such a cell number exists, then the probability will be overwritten
     public void addCell(int number, int data) {
-        map.put(number, data); // ИЗМЕНИТЬ НА ДОБАВЛЕНИЕ СЛЕДУЮЩЕГО ЧИСЛА ПО ИНДЕКСУ DIAPASONE
+        map.put(number, data);
+    }
+
+    // We add a cell indicating the number and the probability of occurrence.
+    public void addCell(int data) {
+        map.put(map.size() + 1, data);
     }
 
     // Deleting a cell by its key
@@ -96,17 +103,5 @@ public class CrookedRoulette {
             System.out.println("key: " + key + "   value: " + value);
         }
     }
-
-//    private static boolean checkInputArrayOfValues(int[] inputArray) {
-//        int sum = 0;
-//        for (int number : inputArray) {
-//            sum += number;
-//        }
-//        if (sum == 100) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
 
 }

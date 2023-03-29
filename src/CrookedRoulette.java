@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class CrookedRoulette {
 
-    HashMap map = new HashMap();
-    ArrayList<Integer> diapason = new ArrayList<Integer>();
+    private HashMap map = new HashMap();
+    private ArrayList<Integer> diapason = new ArrayList<Integer>();
 
     // The class constructor creates a HashMap for a range of cells, the area of the cells is the same
     CrookedRoulette(int a, int b) {
@@ -49,7 +49,7 @@ public class CrookedRoulette {
     public boolean startGame(int inputNumber) {
         createDiapasones();
         int randomResult = getResult();
-        System.out.println("The result of determining the range: " + randomResult);
+//        System.out.println("The result of determining the range: " + randomResult);
         if (inputNumber == randomResult) {
             return true;
         } else {
@@ -82,9 +82,14 @@ public class CrookedRoulette {
         map.put(map.size() + 1, data);
     }
 
-    // Deleting a cell by its key
-    public void removeCell(int number) {
-        map.remove(number);
+    // Deleting a last cell
+    public void removeCell() {
+        map.remove(map.size());
+    }
+
+    // Clear roulette
+    public void clearRoulette() {
+        map.clear();
     }
 
     // Set equal probabilities for all roulette cells
@@ -96,10 +101,8 @@ public class CrookedRoulette {
     }
 
     public void printRoulette() {
-        int sum = 0;
         for (Object key : map.keySet()) {
             Object value = map.get(key);
-            sum += (int) value;
             System.out.println("key: " + key + "   value: " + value);
         }
     }
